@@ -26,6 +26,7 @@ import gabriel.atrack.activity.repository.jpa.ActivityTypeRepositoryJpa;
 import gabriel.atrack.dto.Activity;
 import gabriel.atrack.dto.ActivityType;
 import gabriel.atrack.dto.ActivityTypeDef;
+import gabriel.atrack.mailbox.dto.ActionItem;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -170,10 +171,13 @@ public class UsecaseTests {
 		}
 
 		em.getTransaction().begin();
-		Collection<Principal> items = getActionItem(new Principal("parvezshah"),
-				"connection");
+		Collection<ActionItem> items = getActionItem(new Principal("parvezshah"));
 		em.getTransaction().commit();
 		Assert.assertTrue(1 == items.size());
+		ActionItem actionItem = items.iterator().next();
+
+		actionItem.setStatus("Approve");
+		updateOrCreateActionItem(actionItem);
 
 		{
 			em.getTransaction().begin();
