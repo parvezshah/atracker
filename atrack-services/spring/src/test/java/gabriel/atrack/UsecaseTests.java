@@ -26,7 +26,9 @@ import gabriel.atrack.activity.repository.jpa.ActivityTypeRepositoryJpa;
 import gabriel.atrack.dto.Activity;
 import gabriel.atrack.dto.ActivityType;
 import gabriel.atrack.dto.ActivityTypeDef;
+import gabriel.atrack.mailbox.api.PostalService;
 import gabriel.atrack.mailbox.dto.ActionItem;
+import gabriel.atrack.po.dto.Post;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -53,6 +55,8 @@ public class UsecaseTests {
 	private ACLRepository acr;
 
 	private EntityManager em;
+
+	private PostalService ps;
 
 	/**
 	 * @throws java.lang.Exception
@@ -188,6 +192,18 @@ public class UsecaseTests {
 		}
 	}
 
+	private Collection<Principal> getConnections(Principal principal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private void makeConnection(Principal principal, Principal principal2,
+			String tag) {
+		Post post = new Post(principal, principal2, "friendship_request", null);
+		post = ps.newPost(post);
+
+	}
+
 	@Test
 	public void test() {
 		em.getTransaction().begin();
@@ -240,11 +256,16 @@ public class UsecaseTests {
 
 	private void createActivityData() {
 		// create Activity Data with information from state field
+
+		// create a Action which will result in creating an activity
+
+		// workflow
+		// create a
 		Activity dtoActivity = new Activity();
 		dtoActivity.setActivityCode(1L);
 		dtoActivity.setData("someString", "string value");
 		dtoActivity.setData("someLong", 1000L);
-		dtoActivity.setOwner(1L);
+		dtoActivity.setOwner(new Principal("parvezshah"));
 
 		atrs.createActivity(dtoActivity);
 

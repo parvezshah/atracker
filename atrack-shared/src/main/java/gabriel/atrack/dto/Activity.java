@@ -1,21 +1,24 @@
 package gabriel.atrack.dto;
 
+
+import gabriel.atrack.acl.dto.Principal;
+
 import java.util.HashMap;
 
 public class Activity {
 
-	private Long owner;
+	private Principal owner;
 	private Long activityCode;
 	private Long creationTime;
 	private HashMap<String, String> dataString = new HashMap<String, String>();
 	private HashMap<String, Long> dataLong = new HashMap<String, Long>();
 
-	public Long getOwner() {
+	public Principal getOwner() {
 		return owner;
 	}
 
-	public void setOwner(final Long owner) {
-		this.owner = owner;
+	public void setOwner(final Principal principal) {
+		this.owner = principal;
 	}
 
 	public Long getActivityCode() {

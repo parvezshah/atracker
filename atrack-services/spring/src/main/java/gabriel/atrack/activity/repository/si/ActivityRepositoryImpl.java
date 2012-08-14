@@ -1,18 +1,14 @@
 package gabriel.atrack.activity.repository.si;
 
-import java.util.List;
-
 import gabriel.atrack.activity.model.Activity_;
 import gabriel.atrack.activity.repository.ActivityRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.MessageChannel;
-import org.springframework.integration.channel.DirectChannel;
-import org.springframework.integration.core.MessagingTemplate;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 @Component("activityRepositoryImpl")
 public class ActivityRepositoryImpl implements ActivityRepository {
@@ -45,7 +41,7 @@ public class ActivityRepositoryImpl implements ActivityRepository {
 	}
 
 	@Override
-	public List<Activity_> getActivity(Long ts, int size) {
+	public List<Activity_> getActivity(Long ts, Integer maxRowCount) {
 		throw new UnsupportedOperationException("getActivity");
 	}
 

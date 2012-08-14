@@ -42,7 +42,7 @@ public class ActivityRepositoryMemCache implements ActivityRepository {
 		}
 		activities.add(activity);
 		
-		memcached.add(key, exp, o)
+		//memcached.add(key, exp, o)
 
 	}
 
