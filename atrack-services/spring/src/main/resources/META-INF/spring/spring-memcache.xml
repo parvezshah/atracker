@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<bean id="memcached.client" class="net.spy.memcached.spring.MemcachedClientFactoryBean">
+		<property name="servers" value="localhost:1122" />
+		<property name="protocol" value="TEXT" />
+		<property name="transcoder">
+			<bean class="net.spy.memcached.transcoders.SerializingTranscoder" />
+		</property>
+		<property name="locatorType" value="ARRAY_MOD" />
+		<property name="opTimeout" value="2000" />
+		<property name="failureMode" value="Cancel" />
+		<property name="useNagleAlgorithm" value="false" />
+		<property name="timeoutExceptionThreshold" value="20" />
+	</bean>
+</beans>
+
